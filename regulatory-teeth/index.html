@@ -50,7 +50,16 @@ h1 strong{font-weight:700}
 .callout{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:20px 24px;margin-bottom:20px}
 .callout p{margin:0;font-size:15px;line-height:1.7}
 
-@media(max-width:768px){h1{font-size:28px}}
+.timeline-table{width:100%;border-collapse:collapse;margin-top:4px}
+.timeline-table th{text-align:left;padding:10px 14px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);font-weight:700;border-bottom:2px solid var(--border);background:rgba(15,28,46,0.5)}
+.timeline-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;line-height:1.5}
+.timeline-table tr:last-child td{border-bottom:none}
+.timeline-table .date{font-weight:700;color:var(--text-bright);white-space:nowrap}
+.timeline-table .date-future{font-weight:700;color:var(--amber);white-space:nowrap}
+.timeline-table .date-key{font-weight:700;color:var(--teal);white-space:nowrap}
+.timeline-table .impact-key{color:var(--teal);font-weight:600}
+.timeline-table tr:hover td{background:rgba(59,130,246,0.03)}
+@media(max-width:768px){h1{font-size:28px}.timeline-table{font-size:13px}}
 </style>
 </head>
 <body>
@@ -69,14 +78,14 @@ h1 strong{font-weight:700}
 <div class="section">
   <div class="section-label">Current State</div>
   <div class="callout">
-    <p>Jeff, this section is for you. Current state: Vietnam is solidly <strong>Phase 1</strong> in your framework. No platform has been fined, warned, or blocked for child safety or age verification. Le Ton Viet confirmed: <strong>zero enforcement actions so far</strong> and the government "still doesn't know how to actively" investigate age verification.</p>
+    <p>Jeff, this section is for you. Current state: Vietnam is solidly <strong>Phase 1</strong> in your framework as of today. No platform has been fined, warned, or blocked for child safety or age verification. However, the lawyer I interviewed strongly believes there are teeth coming in H2 of this year.</p>
   </div>
 </div>
 
 <div class="section">
   <div class="section-label">Teeth Are Coming — H2 2026</div>
   <div class="prose">
-    <p>But Le Ton Viet believes the teeth are coming in <strong>H2 2026</strong>. The PDPL sanctions decree completed public consultation on March 26 and is expected to be finalized soon. Once enacted, <strong>revenue-based penalties up to 5% of annual revenue</strong> become enforceable.</p>
+    <p>Le Ton Viet, Lawyer at Russin &amp; Vecchi, believes that teeth are coming in <strong>H2 2026</strong>. The PDPL sanctions decree completed public consultation on March 26 and is expected to be finalized soon. Once enacted, <strong>revenue-based penalties up to 5% of annual revenue</strong> become enforceable.</p>
     <p>Viet's direct assessment: <em>"I think the enforcement would actually get more intense after the election in the next few months."</em> He expects enforcement to intensify in H2 2026 once post-election stability takes hold.</p>
     <p><strong>The market will unlock starting then. We need to be laying the groundwork now to be ready for it.</strong></p>
   </div>
@@ -86,6 +95,63 @@ h1 strong{font-weight:700}
   <div class="section-label">Live Signal: VNG / Roblox</div>
   <div class="prose">
     <p>The VNG/Roblox situation is a live example of this dynamic — the PDPL is already creating real compliance problems for major platforms, even before penalties are finalized. This is the early signal.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Regulatory Acceleration Timeline</div>
+  <div class="table-wrap" style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow-x:auto">
+    <table class="timeline-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>Phase Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="date">Dec 2024</td>
+          <td>Decree 147 effective</td>
+          <td>User auth + parental registration mandated</td>
+        </tr>
+        <tr>
+          <td class="date">Jan 2026</td>
+          <td>PDPL effective; TikTok + Zalo fined ($64K)</td>
+          <td>Consumer protection enforcement (including child safety)</td>
+        </tr>
+        <tr>
+          <td class="date">Jan 2026</td>
+          <td>Directive 57 issued</td>
+          <td>Party-level mandate: age restrictions for minors</td>
+        </tr>
+        <tr>
+          <td class="date">Mar 2026</td>
+          <td>Biometric SIM verification live</td>
+          <td>National identity infra being built now</td>
+        </tr>
+        <tr>
+          <td class="date-future">Q2 2026</td>
+          <td>VNeID social media integration regs expected</td>
+          <td>Potential "target list" moment</td>
+        </tr>
+        <tr>
+          <td class="date-future">Jul 1</td>
+          <td>New Cybersecurity Law effective</td>
+          <td>Expanded enforcement powers; MPS lead</td>
+        </tr>
+        <tr>
+          <td class="date-key">H2 2026</td>
+          <td><strong>Post-election enforcement intensification</strong></td>
+          <td class="impact-key">Viet (Russin &amp; Vecchi): teeth expected here</td>
+        </tr>
+        <tr>
+          <td class="date-future">Q3 2026</td>
+          <td>VNeID integration technical deadline</td>
+          <td>Implementation pressure on all platforms</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>k-ID Vietnam | Sales Pipeline</title>
+<style>
+:root {
+  --navy: #0f1c2e;
+  --navy-mid: #1a2d45;
+  --blue: #3b82f6;
+  --blue-soft: #60a5fa;
+  --teal: #14b8a6;
+  --teal-soft: rgba(20,184,166,0.15);
+  --amber: #f59e0b;
+  --amber-soft: rgba(245,158,11,0.12);
+  --red-soft: rgba(239,68,68,0.12);
+  --green: #22c55e;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --text-bright: #f8fafc;
+  --border: rgba(148,163,184,0.12);
+  --card: rgba(26,45,69,0.6);
+  --purple: #a78bfa;
+  --purple-soft: rgba(167,139,250,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,system-ui,'Segoe UI',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.5}
+.container{max-width:1320px;margin:0 auto;padding:40px 24px}
+.header{margin-bottom:40px}
+.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:8px}
+.header h1{font-size:42px;font-weight:300;color:var(--text-bright);line-height:1.1;margin-bottom:8px}
+.header h1 strong{font-weight:700}
+.subtitle{font-size:15px;color:var(--text-dim)}
+.subtitle strong{color:var(--text);font-weight:500}
+
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center}
+.kpi-value{font-size:28px;font-weight:700;color:var(--text-bright);line-height:1.2}
+.kpi-label{font-size:11px;color:var(--text-dim);margin-top:4px;letter-spacing:0.5px;text-transform:uppercase}
+
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;margin-top:48px}
+.section-header h2{font-size:24px;font-weight:300;color:var(--text-bright);white-space:nowrap}
+.section-header h2 strong{font-weight:700}
+.section-header .line{flex:1;height:1px;background:var(--border)}
+.badge{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:4px 12px;border-radius:100px;white-space:nowrap}
+.badge-teal{color:var(--teal);background:var(--teal-soft)}
+.badge-purple{color:var(--purple);background:var(--purple-soft)}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.filter-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
+.filter-btn:hover{border-color:var(--blue-soft);color:var(--text)}
+.filter-btn.active{background:var(--blue);border-color:var(--blue);color:white}
+.filter-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-right:4px;font-weight:700}
+.filter-sep{width:1px;height:24px;background:var(--border);margin:0 8px}
+
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:860px}
+th{text-align:left;padding:12px 16px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);font-weight:700;border-bottom:1px solid var(--border);background:rgba(15,28,46,0.5);white-space:nowrap}
+th.sortable{cursor:pointer;user-select:none}
+th.sortable:hover{color:var(--text)}
+td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:middle}
+tbody tr:hover{background:rgba(59,130,246,0.04)}
+.co-name{font-weight:700;color:var(--text-bright)}
+.co-sub{font-size:12px;color:var(--text-dim);margin-top:2px}
+.tag{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.5px}
+.tag-ent{background:var(--teal-soft);color:var(--teal)}
+.tag-mid{background:var(--amber-soft);color:var(--amber)}
+.tag-ind{background:var(--red-soft);color:#ef4444}
+.deal{font-weight:700;color:var(--teal);font-variant-numeric:tabular-nums}
+
+.rev{font-variant-numeric:tabular-nums;font-size:13px}
+.rev-val{color:var(--text-bright);font-weight:600}
+.rev-undisclosed{color:var(--text-dim);font-style:italic}
+
+.conf{display:inline-block;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-left:6px;vertical-align:middle}
+.conf-high{background:rgba(34,197,94,0.15);color:var(--green)}
+.conf-med{background:rgba(245,158,11,0.12);color:var(--amber)}
+.conf-low{background:rgba(148,163,184,0.1);color:var(--text-dim)}
+
+.exposure{font-size:12px;color:var(--text-dim);max-width:240px}
+.summary{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(15,28,46,.5);border-top:1px solid var(--border);font-size:13px;color:var(--text-dim)}
+.summary strong{color:var(--text-bright);font-weight:700}
+
+.longtail-row td{background:rgba(148,163,184,0.04);border-top:2px solid var(--border);font-style:italic}
+
+.hq-note{font-size:13px;color:var(--text-dim);margin-bottom:16px;max-width:700px;line-height:1.6}
+.hq-note strong{color:var(--text);font-weight:600}
+
+.legend{margin-top:24px;display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--text-dim);align-items:center}
+.legend-item{display:flex;align-items:center;gap:6px}
+
+.footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--text-dim);display:flex;justify-content:space-between}
+
+@media(max-width:768px){.kpi-row{grid-template-columns:repeat(2,1fr)}.header h1{font-size:28px}.filter-sep{display:none}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="eyebrow">k-ID Vietnam</div>
+  <h1><strong>Sales</strong> Pipeline</h1>
+  <div class="subtitle">Prepared by <strong>Quinn Campbell</strong> · March 2026 · For Ben Chen & Jeff Wu</div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-card"><div class="kpi-value">$382K</div><div class="kpi-label">Year 1 Revenue (Base Case)</div></div>
+  <div class="kpi-card"><div class="kpi-value">17</div><div class="kpi-label">Gaming Pipeline Targets</div></div>
+  <div class="kpi-card"><div class="kpi-value">18</div><div class="kpi-label">Beyond-Gaming Targets</div></div>
+  <div class="kpi-card"><div class="kpi-value">$2.4M–$2.9M</div><div class="kpi-label">Total Addressable Pipeline</div></div>
+</div>
+
+<!-- MAIN PIPELINE -->
+<div class="section-header"><h2><strong>Named</strong> Pipeline</h2><div class="line"></div><div class="badge badge-teal">Quinn-Sourceable</div></div>
+
+<div class="filters" id="filters"></div>
+<div class="table-wrap">
+  <table><thead><tr id="thead"></tr></thead><tbody id="tbody"></tbody></table>
+  <div class="summary" id="sum"></div>
+</div>
+
+<!-- HQ DECISION -->
+<div class="section-header" style="margin-top:48px"><h2><strong>HQ-Decision</strong> Targets</h2><div class="line"></div><div class="badge badge-purple">Routed Through Jeff / Ben</div></div>
+<div class="hq-note">These companies operate in Vietnam but compliance decisions are made at regional or global HQ. Included in the total addressable pipeline to show the full opportunity, but <strong>not part of Quinn's direct pipeline</strong>. Quinn can surface leads and provide local intelligence.</div>
+<div class="table-wrap">
+  <table>
+    <thead><tr>
+      <th>Company</th><th>Vertical</th><th>Tier</th><th>Company Revenue</th><th>k-ID Deal Est.</th><th>Decision Path</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="co-name">Grab Vietnam</div><div class="co-sub">Super-app / Ride-hailing</div></td>
+        <td>Beyond Gaming</td>
+        <td><span class="tag tag-ent">Enterprise</span></td>
+        <td class="rev"><span class="rev-val">Part of $3.37B global</span><span class="conf conf-high">Verified</span><div style="font-size:11px;color:var(--text-dim);margin-top:2px">FY2025 earnings; 15-20M VN users est.</div></td>
+        <td class="deal">$100K</td>
+        <td class="exposure">Singapore HQ global trust & safety team. Route through Jeff's investor network (a16z, Konvoy).</td>
+      </tr>
+      <tr>
+        <td><div class="co-name">Shopee Vietnam</div><div class="co-sub">E-commerce</div></td>
+        <td>Beyond Gaming</td>
+        <td><span class="tag tag-ent">Enterprise</span></td>
+        <td class="rev"><span class="rev-undisclosed">Part of Sea Limited</span><span class="conf conf-low">Undisclosed</span><div style="font-size:11px;color:var(--text-dim);margin-top:2px;font-style:italic">Vietnam's #1 e-commerce; ~$17B national market</div></td>
+        <td class="deal">$100K</td>
+        <td class="exposure">Sea Limited Singapore HQ. No age verification for account creation.</td>
+      </tr>
+      <tr>
+        <td><div class="co-name">Tiki</div><div class="co-sub">E-commerce</div></td>
+        <td>Beyond Gaming</td>
+        <td><span class="tag tag-mid">Mid-Tier</span></td>
+        <td class="rev"><span class="rev-val">~$58.6M/yr</span><span class="conf conf-high">Verified</span><div style="font-size:11px;color:var(--text-dim);margin-top:2px">Grips Intelligence; declining market share</div></td>
+        <td class="deal">$60K</td>
+        <td class="exposure">Lower priority. Declining share but still significant user base.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="summary"><span><strong>3</strong> HQ-decision targets</span><span>Subtotal: <strong>$260K</strong></span></div>
+</div>
+
+<div class="legend">
+  <span style="font-weight:700;color:var(--text);margin-right:4px">Revenue Confidence:</span>
+  <div class="legend-item"><span class="conf conf-high">Verified</span> SensorTower or financial reports</div>
+  <div class="legend-item"><span class="conf conf-med">Estimated</span> Single source or interview</div>
+  <div class="legend-item"><span class="conf conf-low">Undisclosed</span> No public data</div>
+</div>
+
+<div class="footer"><span>Data: SensorTower (Dec 2025 – Mar 2026), VNG financials, Hoa interview, industry reports</span><span>Quinn Campbell · March 2026</span></div>
+</div>
+
+<script>
+var P=[
+// GAMING - Enterprise
+{c:"VNG (Games + Zalo)",s:"Gaming / Messaging",v:"gaming",t:"enterprise",d:150000,rev:"$400M+ total",revNote:"$272M gaming (H1 2025 annualized)",conf:"high",e:"79.6M MAU Zalo; diaspora US, AU, JP, EU. Actively assessing compliance vendors."},
+{c:"iKame",s:"Gaming (Hybrid-Casual)",v:"gaming",t:"enterprise",d:150000,rev:"$95M/yr",revNote:"App Store IAP only; est. $192M total incl. Google Play",conf:"high",e:"Publishes via Zego Global (SG). Users in US, Brazil, EU, AU, JP. IAP grew 417% in 4 months."},
+{c:"Amanotes",s:"Gaming / Music",v:"gaming",t:"enterprise",d:100000,rev:"$48M\u2013$96M/yr",revNote:"Hoa interview; wide range reflects IAA uncertainty",conf:"med",e:"100M+ MAU, majority US/EU. 1.9M Brazil downloads/quarter. Ben Fox\u2019s #1 priority."},
+{c:"Onesoft / Falcon",s:"Gaming (Hybrid \u2192 IAP)",v:"gaming",t:"enterprise",d:100000,rev:"$38.5M/yr",revNote:"App store; peaked $108M/yr (Hoa)",conf:"high",e:"#1 VN publisher by downloads (17.6M/quarter). Pivoting hard into IAP."},
+{c:"Amobear Technology",s:"Gaming (Hybrid)",v:"gaming",t:"enterprise",d:100000,rev:"$30.8M/yr",revNote:"SensorTower",conf:"high",e:"41 apps incl. PicTrace AR Drawing (child-heavy). Users in Brazil, EU, US."},
+// GAMING - Mid-tier
+{c:"HM Games",s:"Gaming (IAP)",v:"gaming",t:"mid",d:60000,rev:"$14.4M/yr",revNote:"Hoa interview",conf:"med",e:"New builder, impressive IAP traction, growing fast."},
+{c:"PixOn Games",s:"Gaming (Hybrid)",v:"gaming",t:"mid",d:60000,rev:"$12.2M/yr",revNote:"SensorTower",conf:"high",e:"Hybrid IAP + IAA, growing."},
+{c:"Tencent VN ops",s:"Gaming (Crossfire Legends)",v:"gaming",t:"mid",d:60000,rev:"$6.6M/yr",revNote:"SensorTower; HQ may handle compliance globally",conf:"high",e:"VN operations of global publisher. Crossfire Legends."},
+{c:"Bravestars",s:"Gaming",v:"gaming",t:"mid",d:60000,rev:"Undisclosed",revNote:"9.5M downloads/quarter suggests mid-tier revenue",conf:"low",e:"9.5M global downloads/quarter. Users in Brazil, EU, US, AU."},
+{c:"Gamota",s:"Gaming (Publisher)",v:"gaming",t:"mid",d:60000,rev:"Undisclosed",revNote:"Leading publisher/localizer; channel partner potential",conf:"low",e:"Domestic publishing leader. Potential channel partner for k-ID."},
+{c:"Sonat Game",s:"Gaming (Hybrid)",v:"gaming",t:"mid",d:60000,rev:"$3.4M/yr",revNote:"SensorTower",conf:"high",e:"Hybrid model, global distribution."},
+{c:"Higame Global",s:"Gaming",v:"gaming",t:"mid",d:60000,rev:"Undisclosed",revNote:"",conf:"low",e:"1.2M Brazil downloads/quarter. Compliance exposure via Brazil ECA."},
+{c:"Lilith Games VN",s:"Gaming (Mid-core)",v:"gaming",t:"mid",d:60000,rev:"$2.1M/yr",revNote:"SensorTower; VN ops of Chinese publisher",conf:"high",e:"Mid-core IAP. VN operations."},
+// GAMING - Indie
+{c:"XGame Global",s:"Gaming",v:"gaming",t:"indie",d:6000,rev:"$1.2M/yr",revNote:"SensorTower",conf:"high",e:"1.88M Brazil downloads/quarter. Ad-dominant."},
+{c:"Prokids Studio",s:"Gaming (Kids)",v:"gaming",t:"indie",d:6000,rev:"Undisclosed",revNote:"Name implies child audience",conf:"low",e:"2.97M Brazil downloads/quarter. Highest VN publisher Brazil volume."},
+{c:"Lihuhu",s:"Gaming",v:"gaming",t:"indie",d:6000,rev:"$2M/yr",revNote:"SensorTower",conf:"high",e:"Hybrid model, global distribution."},
+
+// BEYOND GAMING - Enterprise
+{c:"Zalo (VNG)",s:"Messaging / Super-app",v:"beyond",t:"enterprise",d:150000,rev:"Part of VNG ($400M+)",revNote:"Zalo revenue not broken out; bundled or standalone deal",conf:"med",e:"79.6M MAU. Diaspora in US, AU, JP, EU. Decree 147 requires parental registration for under-16s."},
+{c:"ELSA Speak",s:"EdTech / AI",v:"beyond",t:"enterprise",d:100000,rev:"Undisclosed",revNote:"$60M total funding; 50M+ users",conf:"low",e:"190 countries. Collects voice biometrics from learners incl. children. COPPA + GDPR-K + LGPD."},
+{c:"FPT Play",s:"OTT Streaming",v:"beyond",t:"enterprise",d:100000,rev:"Part of FPT Corp ($2B+)",revNote:"25M users; budget may be centralized",conf:"low",e:"Children\u2019s content category. 36M+ downloads. 25% subscriber share in VN."},
+{c:"MoMo",s:"Fintech / Super-app",v:"beyond",t:"enterprise",d:100000,rev:"Undisclosed",revNote:"Profitable 2024; $100M+ Series D; unicorn",conf:"low",e:"31M+ users. Super-app with teen-facing gaming/entertainment features."},
+{c:"FPT.AI",s:"AI Platform",v:"beyond",t:"enterprise",d:100000,rev:"Part of FPT Corp ($2B+)",revNote:"Channel/partnership deal; not direct client",conf:"low",e:"Deploying large-scale Vietnamese AI assistant in 2026. Partnership channel potential."},
+
+// BEYOND GAMING - Mid-tier
+{c:"Evolly.app",s:"Utility / Subscription",v:"beyond",t:"mid",d:60000,rev:"$25.8M/yr",revNote:"SensorTower",conf:"high",e:"19 apps. 3M+ downloads/quarter in Western markets. Family-device compliance."},
+{c:"SmartWidget Labs",s:"AI / Productivity",v:"beyond",t:"mid",d:60000,rev:"$11.1M/yr",revNote:"SensorTower; Chat Smith AI = $9.5M alone",conf:"high",e:"AI chatbots heavily used by teens. No age-gating disclosed. Top 20 Brazil."},
+{c:"Apero",s:"AI / Utility / Gaming",v:"beyond",t:"mid",d:60000,rev:"$15\u2013$50M/yr",revNote:"Est. from 130M MAU; ~95% ad-based",conf:"med",e:"1B+ downloads. AI education apps (Libbot, Magic Math). Top 20 Google Play non-game."},
+{c:"VNPay",s:"Fintech / Payments",v:"beyond",t:"mid",d:60000,rev:"Undisclosed",revNote:"$1B+ valuation; dominant QR payment network",conf:"low",e:"Expanding into consumer-facing super-app features."},
+{c:"Maple Labs",s:"AI Apps",v:"beyond",t:"mid",d:60000,rev:"$3.2M/yr",revNote:"SensorTower",conf:"high",e:"10M+ MAU worldwide. AI-powered consumer apps."},
+{c:"VieON",s:"OTT Streaming",v:"beyond",t:"mid",d:60000,rev:"$3.1M/yr",revNote:"SensorTower (app store only)",conf:"high",e:"Gen Z-targeted content. Vietnam\u2019s streaming market."},
+{c:"VioEdu",s:"EdTech / K-12",v:"beyond",t:"mid",d:60000,rev:"Part of FPT/Viettel",revNote:"All users are minors",conf:"low",e:"K-12 AI learning platform. Critical minor exposure."},
+{c:"Topica",s:"Online Education",v:"beyond",t:"mid",d:60000,rev:"Undisclosed",revNote:"Regional (VN, ID, PH, TH)",conf:"low",e:"SEA regional ed-tech platform."},
+{c:"Be Group",s:"Ride-hailing / Fintech",v:"beyond",t:"mid",d:60000,rev:"Undisclosed",revNote:"10M+ users; integrated Cake digital bank",conf:"low",e:"9% ride-hailing market. Cake digital bank integration. Teen user base growing."},
+
+// BEYOND GAMING - Indie
+{c:"SilverAI (SnapEdit)",s:"AI Photo Editing",v:"beyond",t:"indie",d:6000,rev:"$2.2M/yr",revNote:"SensorTower",conf:"high",e:"Photo editing popular with teens. UK AADC scrutiny."},
+{c:"Good Retouch",s:"AI Photo / Body",v:"beyond",t:"indie",d:6000,rev:"$2.9M/yr",revNote:"SensorTower",conf:"high",e:"Body editing apps = hot compliance category."},
+{c:"Marathon Education",s:"EdTech / K-12",v:"beyond",t:"indie",d:6000,rev:"Undisclosed",revNote:"YC-backed; startup stage",conf:"low",e:"All users are minors by definition. K-12 online tutoring."},
+{c:"TAPUNIVERSE",s:"Apps",v:"beyond",t:"indie",d:6000,rev:"$1.9M/yr",revNote:"SensorTower",conf:"high",e:"Global distribution, subscription model."},
+];
+
+var fV='all',fT='all',sK='deal',sD='desc';
+function to(t){return t==='enterprise'?0:t==='mid'?1:2}
+
+function render(){
+  var f=P.filter(function(p){
+    if(fV!=='all'&&p.v!==fV)return false;
+    if(fT!=='all'&&p.t!==fT)return false;
+    return true;
+  });
+  f.sort(function(a,b){
+    var va,vb;
+    if(sK==='company')return sD==='asc'?a.c.localeCompare(b.c):b.c.localeCompare(a.c);
+    if(sK==='tier'){va=to(a.t);vb=to(b.t)}
+    else if(sK==='deal'){va=a.d;vb=b.d}
+    else if(sK==='rev'){va=parseRevNum(a.rev);vb=parseRevNum(b.rev)}
+    return sD==='asc'?va-vb:vb-va;
+  });
+  var h='';
+  f.forEach(function(p){
+    var tc=p.t==='enterprise'?'tag-ent':p.t==='mid'?'tag-mid':'tag-ind';
+    var tl=p.t==='enterprise'?'Enterprise':p.t==='mid'?'Mid-Tier':'Indie';
+    var vl=p.v==='gaming'?'Gaming':'Beyond Gaming';
+    var cc=p.conf==='high'?'conf-high':p.conf==='med'?'conf-med':'conf-low';
+    var cl=p.conf==='high'?'Verified':p.conf==='med'?'Estimated':'Undisclosed';
+    var isUnd=p.rev.indexOf('Undisclosed')===0||p.rev.indexOf('Part of')===0;
+    var revHtml;
+    if(isUnd){revHtml='<span class="rev-undisclosed">'+p.rev+'</span>'}
+    else{revHtml='<span class="rev-val">'+p.rev+'</span>'}
+    revHtml+='<span class="conf '+cc+'">'+cl+'</span>';
+    if(p.revNote){
+      revHtml+='<div style="font-size:11px;color:var(--text-dim);margin-top:2px'+(isUnd?';font-style:italic':'')+'">'+p.revNote+'</div>';
+    }
+    h+='<tr>';
+    h+='<td><div class="co-name">'+p.c+'</div><div class="co-sub">'+p.s+'</div></td>';
+    h+='<td>'+vl+'</td>';
+    h+='<td><span class="tag '+tc+'">'+tl+'</span></td>';
+    h+='<td class="rev">'+revHtml+'</td>';
+    h+='<td class="deal">$'+(p.d/1e3).toFixed(0)+'K</td>';
+    h+='<td class="exposure">'+p.e+'</td>';
+    h+='</tr>';
+  });
+  // Long tail row
+  h+='<tr class="longtail-row">';
+  h+='<td><div class="co-name">Additional 30\u201350 Indie Publishers</div><div class="co-sub">Long tail with global compliance exposure</div></td>';
+  h+='<td>Gaming</td>';
+  h+='<td><span class="tag tag-ind">Indie</span></td>';
+  h+='<td class="rev"><span class="rev-undisclosed">Various</span><span class="conf conf-low">Undisclosed</span><div style="font-size:11px;color:var(--text-dim);margin-top:2px;font-style:italic">1,062+ active VN publisher accounts; addressable when enforcement or platform mandates trigger</div></td>';
+  h+='<td class="deal">$180K\u2013$300K</td>';
+  h+='<td class="exposure">Requires domestic enforcement trigger or Apple/Google platform mandate to become addressable. Year 1 realistic: 2\u20135 deals ($12K\u2013$30K).</td>';
+  h+='</tr>';
+
+  document.getElementById('tbody').innerHTML=h;
+
+  var tu=0,ne=0,nm=0,ni=0;
+  f.forEach(function(p){tu+=p.d;if(p.t==='enterprise')ne++;else if(p.t==='mid')nm++;else ni++});
+  document.getElementById('sum').innerHTML='<span>Showing <strong>'+f.length+'</strong> named targets + long tail: '+ne+' enterprise, '+nm+' mid-tier, '+ni+' indie + 30\u201350 additional</span><span>Named pipeline: <strong>$'+(tu/1e3).toFixed(0)+'K</strong></span>';
+}
+
+function parseRevNum(r){
+  if(!r||r.indexOf('Undisclosed')===0)return -1;
+  if(r.indexOf('Part of')===0)return -0.5;
+  var m=r.match(/\$([0-9,.]+)/);
+  if(!m)return 0;
+  var n=parseFloat(m[1].replace(/,/g,''));
+  if(r.indexOf('M')>-1)n*=1000000;
+  else if(r.indexOf('B')>-1)n*=1000000000;
+  else if(r.indexOf('K')>-1)n*=1000;
+  return n;
+}
+
+// Build filters
+(function(){
+  var fl=document.getElementById('filters');
+  var html='<span class="filter-label">Vertical</span>';
+  [['all','All'],['gaming','Gaming'],['beyond','Beyond Gaming']].forEach(function(x){
+    html+='<button class="filter-btn'+(fV===x[0]?' active':'')+'" data-f="v" data-val="'+x[0]+'">'+x[1]+'</button>';
+  });
+  html+='<div class="filter-sep"></div><span class="filter-label">Tier</span>';
+  [['all','All'],['enterprise','Enterprise'],['mid','Mid-Tier'],['indie','Indie']].forEach(function(x){
+    html+='<button class="filter-btn'+(fT===x[0]?' active':'')+'" data-f="t" data-val="'+x[0]+'">'+x[1]+'</button>';
+  });
+  fl.innerHTML=html;
+  fl.addEventListener('click',function(e){
+    var btn=e.target.closest('.filter-btn');if(!btn)return;
+    var g=btn.getAttribute('data-f'),val=btn.getAttribute('data-val');
+    if(g==='v')fV=val;else fT=val;
+    fl.querySelectorAll('[data-f="'+g+'"]').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    render();
+  });
+})();
+
+// Build thead
+(function(){
+  var cols=[['Company','company'],['Vertical',''],['Tier','tier'],['Company Revenue','rev'],['k-ID Deal Est.','deal'],['Key Compliance Exposure','']];
+  var h='';
+  cols.forEach(function(col){
+    if(col[1]){h+='<th class="sortable" data-sort="'+col[1]+'">'+col[0]+' <span class="sa"></span></th>'}
+    else{h+='<th>'+col[0]+'</th>'}
+  });
+  document.getElementById('thead').innerHTML=h;
+  document.getElementById('thead').addEventListener('click',function(e){
+    var th=e.target.closest('th.sortable');if(!th)return;
+    var k=th.getAttribute('data-sort');
+    if(sK===k)sD=sD==='desc'?'asc':'desc';else{sK=k;sD='desc'}
+    document.querySelectorAll('.sa').forEach(function(a){a.textContent=''});
+    th.querySelector('.sa').textContent=sD==='desc'?' \u25BC':' \u25B2';
+    render();
+  });
+})();
+
+render();
+</script>
+</body>
+</html>

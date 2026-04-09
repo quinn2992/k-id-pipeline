@@ -182,7 +182,7 @@ tbody tr:hover{background:rgba(59,130,246,0.04)}
 <script>
 var P=[
 // GAMING - Enterprise
-{c:"VNG (Games + Zalo)",s:"Gaming / Messaging",v:"gaming",t:"enterprise",d:150000,rev:"$400M+ total",revNote:"$272M gaming (H1 2025 annualized)",conf:"high",e:"79.6M MAU Zalo; diaspora US, AU, JP, EU. Actively assessing compliance vendors."},
+{c:"VNG (Games + Zalo)",s:"Gaming / Messaging",v:"gaming",t:"enterprise",d:150000,rev:"$400M+ total",revNote:"$272M gaming (H1 2025 annualized)",conf:"high",e:"79.6M MAU Zalo; diaspora US, AU, JP, EU. Actively assessing compliance vendors.",url:"vng/"},
 {c:"iKame",s:"Gaming (Hybrid-Casual)",v:"gaming",t:"enterprise",d:150000,rev:"$95M/yr",revNote:"App Store IAP only; est. $192M total incl. Google Play",conf:"high",e:"Publishes via Zego Global (SG). Users in US, Brazil, EU, AU, JP. IAP grew 417% in 4 months."},
 {c:"Amanotes",s:"Gaming / Music",v:"gaming",t:"enterprise",d:100000,rev:"$48M\u2013$96M/yr",revNote:"Hoa interview; wide range reflects IAA uncertainty",conf:"med",e:"100M+ MAU, majority US/EU. 1.9M Brazil downloads/quarter. Ben Fox\u2019s #1 priority."},
 {c:"Onesoft / Falcon",s:"Gaming (Hybrid \u2192 IAP)",v:"gaming",t:"enterprise",d:100000,rev:"$38.5M/yr",revNote:"App store; peaked $108M/yr (Hoa)",conf:"high",e:"#1 VN publisher by downloads (17.6M/quarter). Pivoting hard into IAP."},
@@ -259,7 +259,8 @@ function render(){
       revHtml+='<div style="font-size:11px;color:var(--text-dim);margin-top:2px'+(isUnd?';font-style:italic':'')+'">'+p.revNote+'</div>';
     }
     h+='<tr>';
-    h+='<td><div class="co-name">'+p.c+'</div><div class="co-sub">'+p.s+'</div></td>';
+    var nameHtml=p.url?'<a href="'+p.url+'" style="color:inherit;text-decoration:none;border-bottom:1px dashed var(--text-dim)">'+p.c+'</a>':p.c;
+    h+='<td><div class="co-name">'+nameHtml+'</div><div class="co-sub">'+p.s+'</div></td>';
     h+='<td>'+vl+'</td>';
     h+='<td><span class="tag '+tc+'">'+tl+'</span></td>';
     h+='<td class="rev">'+revHtml+'</td>';
